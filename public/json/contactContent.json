@@ -1,0 +1,13 @@
+{
+  "hero": {
+    "title": "Get In Touch",
+    "description": "Let's build something meaningful.",
+    "cta": "Send a Message"
+  },
+  "email": "kevin@example.com",
+  "location": "Kenya",
+  "socials": {
+    "github": "https://github.com/yourusername",
+    "linkedin": "https://linkedin.com/in/yourprofile"
+  }
+} 

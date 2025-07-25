@@ -1,0 +1,81 @@
+{
+  "hero": {
+    "name": "Kevin Kipruto",
+    "tagline": "Forged in chemistry, wired for code.",
+    "shortBio": "Full-stack dev turning ideas into interactive magic. Welcome to my digital playground.",
+    "cta": "See My Work"
+  },
+  "about": {
+    "title": "About Me",
+    "description": "A passionate developer blending logic with creativity.",
+    "cta": "Explore Journey",
+    "bio": {
+      "full": "I'm Kevin Kipruto, a developer driven by purpose, a chemist turned coder, mastering the digital elements."
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "description": "Crafted ideas turned into working code.",
+    "cta": "See All Projects",
+    "list": [
+      {
+        "title": "Smart Portfolio",
+        "summary": "An interactive portfolio powered by Nuxt and Tailwind.",
+        "tech": ["Nuxt", "Tailwind", "JSON"]
+      },
+      {
+        "title": "AI Chatbot",
+        "summary": "Conversational assistant using GPT API.",
+        "tech": ["Vue", "Node.js", "OpenAI"]
+      }
+    ]
+  },
+  "education": {
+    "title": "Education",
+    "description": "Where my journey of curiosity was forged.",
+    "cta": "View Credentials",
+    "timeline": [
+      {
+        "school": "Moi University",
+        "course": "BSc. Computer Science",
+        "year": "2020 - 2024"
+      },
+      {
+        "school": "Kaplong Boys",
+        "course": "Kenya Certificate of Secondary Education",
+        "year": "2016 - 2019"
+      }
+    ]
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "description": "Let's build something meaningful.",
+    "cta": "Send a Message",
+    "email": "kevin@example.com",
+    "location": "Kenya",
+    "socials": {
+      "github": "https://github.com/yourusername",
+      "linkedin": "https://linkedin.com/in/yourprofile"
+    }
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "description": "What people say about my work and impact.",
+    "cta": "Read More",
+    "list": [
+      {
+        "name": "John Doe",
+        "feedback": "Kevin's work was top-tier. Highly recommended!",
+        "role": "CEO, TechCorp"
+      },
+      {
+        "name": "Jane Kim",
+        "feedback": "Professional, reliable, and insanely talented.",
+        "role": "CTO, DevWorks"
+      }
+    ]
+  },
+  "aboutLink": "/about",
+  "projectsLink": "/projects",
+  "contactLink": "/contact"
+} 

@@ -1,0 +1,19 @@
+{
+  "hero": {
+    "title": "Testimonials",
+    "description": "What people say about my work and impact.",
+    "cta": "Read More"
+  },
+  "testimonials": [
+    {
+      "name": "John Doe",
+      "feedback": "Kevin's work was top-tier. Highly recommended!",
+      "role": "CEO, TechCorp"
+    },
+    {
+      "name": "Jane Kim",
+      "feedback": "Professional, reliable, and insanely talented.",
+      "role": "CTO, DevWorks"
+    }
+  ]
+} 

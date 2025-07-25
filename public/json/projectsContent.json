@@ -1,0 +1,19 @@
+{
+  "hero": {
+    "title": "Projects",
+    "description": "Crafted ideas turned into working code.",
+    "cta": "See All Projects"
+  },
+  "projects": [
+    {
+      "title": "Smart Portfolio",
+      "summary": "An interactive portfolio powered by Nuxt and Tailwind.",
+      "tech": ["Nuxt", "Tailwind", "JSON"]
+    },
+    {
+      "title": "AI Chatbot",
+      "summary": "Conversational assistant using GPT API.",
+      "tech": ["Vue", "Node.js", "OpenAI"]
+    }
+  ]
+} 
