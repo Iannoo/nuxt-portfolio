@@ -9,7 +9,7 @@ export default defineNuxtConfig({
     '@vite-pwa/nuxt',
   ],
   image: {
-    domains: ['localhost'],
+    provider: 'ipx',
     screens: { sm: 320, md: 640, lg: 1024, xl: 1280 },
     presets: {
       avatar: { modifiers: { format: 'webp', width: 100, height: 100 } }

@@ -90,13 +90,11 @@ const hero = computed(() => content.value?.hero ?? {
         </header>
         <!-- Profile Image -->
         <div class="flex-shrink-0 animate-fade-in mb-6 md:mb-0 w-full flex justify-center md:justify-end md:w-auto">
-          <NuxtImg
+          <img
             src="/images/profile.jpg"
             alt="Portrait of Kevin Kipruto, smiling and ready to help you build something great"
             class="w-28 h-28 xs:w-36 xs:h-36 sm:w-40 sm:h-40 md:w-48 md:h-48 object-cover rounded-full border-4 border-blue-400 shadow-xl hover:scale-105 transition-transform"
-            priority
             loading="eager"
-            sizes="(max-width: 640px) 112px, (max-width: 768px) 144px, (max-width: 1024px) 160px, 192px"
           />
         </div>
       </div>
