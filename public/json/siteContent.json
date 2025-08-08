@@ -75,6 +75,11 @@
       }
     ]
   },
+  "blog": {
+    "title": "Blog",
+    "description": "Thoughts, tutorials, and insights from my journey in tech.",
+    "cta": "Read More"
+  },
   "aboutLink": "/about",
   "projectsLink": "/projects",
   "contactLink": "/contact"

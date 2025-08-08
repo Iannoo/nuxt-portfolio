@@ -4,6 +4,7 @@
       <li><NuxtLink to="/" class="hover:text-electric transition" exact>Home</NuxtLink></li>
       <li><NuxtLink to="/about" class="hover:text-electric transition">About</NuxtLink></li>
       <li><NuxtLink to="/projects" class="hover:text-electric transition">Projects</NuxtLink></li>
+      <li><NuxtLink to="/blog" class="hover:text-electric transition">Blog</NuxtLink></li>
       <li><NuxtLink to="/education" class="hover:text-electric transition">Education</NuxtLink></li>
       <li><NuxtLink to="/contact" class="hover:text-electric transition">Contact</NuxtLink></li>
       <li><NuxtLink to="/testimonials" class="hover:text-electric transition">Testimonials</NuxtLink></li>
