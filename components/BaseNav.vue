@@ -1,13 +1,102 @@
 <template>
-  <nav class="w-full py-4 px-6 flex justify-center bg-blueprint/80 border-b border-electric z-20">
-    <ul class="flex gap-8 text-lg font-semibold">
-      <li><NuxtLink to="/" class="hover:text-electric transition" exact>Home</NuxtLink></li>
-      <li><NuxtLink to="/about" class="hover:text-electric transition">About</NuxtLink></li>
-      <li><NuxtLink to="/projects" class="hover:text-electric transition">Projects</NuxtLink></li>
-      <li><NuxtLink to="/blog" class="hover:text-electric transition">Blog</NuxtLink></li>
-      <li><NuxtLink to="/education" class="hover:text-electric transition">Education</NuxtLink></li>
-      <li><NuxtLink to="/contact" class="hover:text-electric transition">Contact</NuxtLink></li>
-      <li><NuxtLink to="/testimonials" class="hover:text-electric transition">Testimonials</NuxtLink></li>
+  <nav class="w-full py-3 px-4 flex justify-center bg-blueprint/80 border-b border-electric z-20">
+    <ul class="flex items-center gap-6 text-sm font-medium">
+      <li>
+        <button @click="toggleTheme" class="flex items-center gap-2 hover:text-electric transition" aria-label="Toggle theme">
+          <svg v-if="!isDark" viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l-1.5-1.5M20.5 20.5L19 19M19 5l1.5-1.5M5 19L3.5 20.5"/>
+          </svg>
+          <svg v-else viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <span class="hidden sm:inline">Theme</span>
+        </button>
+      </li>
+      <li>
+        <NuxtLink to="/" exact class="flex items-center gap-2 hover:text-electric transition" exact-active-class="text-electric" aria-label="Home">
+          <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M3 10.5L12 3l9 7.5"/>
+            <path d="M5 9.5V21h14V9.5"/>
+          </svg>
+          <span class="hidden sm:inline">Home</span>
+        </NuxtLink>
+      </li>
+      <li>
+        <NuxtLink to="/about" class="flex items-center gap-2 hover:text-electric transition" exact-active-class="text-electric" aria-label="About">
+          <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="7" r="3"/>
+            <path d="M5 21a7 7 0 0 1 14 0"/>
+          </svg>
+          <span class="hidden sm:inline">About</span>
+        </NuxtLink>
+      </li>
+      <li>
+        <NuxtLink to="/projects" class="flex items-center gap-2 hover:text-electric transition" exact-active-class="text-electric" aria-label="Projects">
+          <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M4 7h16v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7z"/>
+            <path d="M9 7V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1"/>
+          </svg>
+          <span class="hidden sm:inline">Projects</span>
+        </NuxtLink>
+      </li>
+      <li>
+        <NuxtLink to="/blog" class="flex items-center gap-2 hover:text-electric transition" exact-active-class="text-electric" aria-label="Blog">
+          <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M7 3h8l5 5v11a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/>
+            <path d="M15 3v5a2 2 0 0 0 2 2h5"/>
+            <path d="M9 13h6"/>
+            <path d="M9 17h6"/>
+          </svg>
+          <span class="hidden sm:inline">Blog</span>
+        </NuxtLink>
+      </li>
+      <li>
+        <NuxtLink to="/education" class="flex items-center gap-2 hover:text-electric transition" exact-active-class="text-electric" aria-label="Education">
+          <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M3 9l9-4 9 4-9 4-9-4z"/>
+            <path d="M21 10v5"/>
+            <path d="M3 10v5c0 2 6 4 9 4s9-2 9-4v-5"/>
+          </svg>
+          <span class="hidden sm:inline">Education</span>
+        </NuxtLink>
+      </li>
+      <li>
+        <NuxtLink to="/contact" class="flex items-center gap-2 hover:text-electric transition" exact-active-class="text-electric" aria-label="Contact">
+          <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M21 8l-9 6-9-6"/>
+            <rect x="3" y="5" width="18" height="14" rx="2" ry="2"/>
+          </svg>
+          <span class="hidden sm:inline">Contact</span>
+        </NuxtLink>
+      </li>
+      <li>
+        <NuxtLink to="/testimonials" class="flex items-center gap-2 hover:text-electric transition" exact-active-class="text-electric" aria-label="Testimonials">
+          <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8">
+            <circle cx="7.5" cy="7.5" r="3"/>
+            <path d="M2 21a6 6 0 0 1 11 0"/>
+            <circle cx="17" cy="10" r="3"/>
+            <path d="M14 21a5 5 0 0 1 8 0"/>
+          </svg>
+          <span class="hidden sm:inline">Testimonials</span>
+        </NuxtLink>
+      </li>
     </ul>
   </nav>
-</template> 
+</template>
+<script setup>
+import { ref, onMounted } from 'vue'
+
+const isDark = ref(false)
+
+onMounted(() => {
+  isDark.value = document.documentElement.classList.contains('dark')
+})
+
+const toggleTheme = () => {
+  if (window && window.__toggleTheme) {
+    window.__toggleTheme()
+    isDark.value = document.documentElement.classList.contains('dark')
+  }
+}
+</script>

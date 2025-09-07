@@ -17,6 +17,13 @@ const hero = content.hero ?? {
   description: 'Where my journey of curiosity was forged.',
   cta: 'View Credentials'
 }
+
+const onImgError = (e: Event) => {
+  const target = e.target as HTMLImageElement
+  if (!target) return
+  // fallback to local profile image to avoid broken thumbnail
+  target.src = '/images/profile.jpg'
+}
 </script>
 <template>
   <BaseSection :title="hero.title" center>
@@ -25,9 +32,14 @@ const hero = content.hero ?? {
       <div>
         <ul class="space-y-4">
           <li v-for="item in content?.timeline" :key="item.school" class="bg-blueprint/80 rounded p-4 shadow">
-            <h3 class="text-lg font-bold text-electric mb-1">{{ item.school }}</h3>
-            <p class="text-white/90">{{ item.course }}</p>
-            <p class="text-white/70">{{ item.year }}</p>
+            <div class="flex items-start gap-4">
+              <img v-if="item.photo" :src="item.photo" :alt="item.school + ' photo'" class="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded" loading="lazy" @error="onImgError"/>
+              <div>
+                <h3 class="text-lg font-bold text-electric mb-1">{{ item.school }}</h3>
+                <p class="text-white/90">{{ item.course }}</p>
+                <p class="text-white/70">{{ item.year }}</p>
+              </div>
+            </div>
           </li>
         </ul>
       </div>

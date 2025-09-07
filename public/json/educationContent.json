@@ -7,13 +7,15 @@
   "timeline": [
     {
       "school": "Moi University",
-      "course": "BSc. Computer Science",
-      "year": "2020 - 2024"
+      "course": "BSc. Chemical and Processing Engineering",
+      "year": "2020 - 2024",
+      "photo": "https://images.unsplash.com/photo-1523580846011-d3a5bc25702b?auto=format&fit=crop&w=800&q=60"
     },
     {
-      "school": "Kaplong Boys",
+      "school": "Alliance Boys High School",
       "course": "Kenya Certificate of Secondary Education",
-      "year": "2016 - 2019"
+      "year": "2016 - 2019",
+      "photo": "https://images.unsplash.com/photo-1581091012184-7c54c39d0e7b?auto=format&fit=crop&w=800&q=60"
     }
   ]
 } 

@@ -83,3 +83,4 @@ const getCategoryColor = (category: string) => {
     </div>
   </article>
 </template>
+

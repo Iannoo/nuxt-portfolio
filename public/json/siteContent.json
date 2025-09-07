@@ -1,16 +1,16 @@
 {
   "hero": {
     "name": "Kevin Kipruto",
-    "tagline": "Forged in chemistry, wired for code.",
+    "tagline": "Chemical and Processing Engineer exploring quantum physics, wired for code.",
     "shortBio": "Full-stack dev turning ideas into interactive magic. Welcome to my digital playground.",
     "cta": "See My Work"
   },
   "about": {
     "title": "About Me",
-    "description": "A passionate developer blending logic with creativity.",
+    "description": "A chemical and processing engineering student, developer, and quantum physics enthusiast.",
     "cta": "Explore Journey",
     "bio": {
-      "full": "I'm Kevin Kipruto, a developer driven by purpose, a chemist turned coder, mastering the digital elements."
+      "full": "I'm Kevin Kipruto — studying Chemical and Processing Engineering, working at the intersection of software and quantum physics, and building products with purpose."
     }
   },
   "projects": {
@@ -37,11 +37,11 @@
     "timeline": [
       {
         "school": "Moi University",
-        "course": "BSc. Computer Science",
+        "course": "BSc. Chemical and Processing Engineering",
         "year": "2020 - 2024"
       },
       {
-        "school": "Kaplong Boys",
+        "school": "Alliance Boys High School",
         "course": "Kenya Certificate of Secondary Education",
         "year": "2016 - 2019"
       }
