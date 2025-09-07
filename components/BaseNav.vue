@@ -1,5 +1,5 @@
 <template>
-  <nav class="w-full py-3 px-4 flex justify-center bg-blueprint/80 border-b border-electric z-20">
+  <nav class="w-full py-3 px-4 flex justify-center bg-transparent backdrop-blur-sm border-b border-white/10 dark:border-[#00ff7f33] z-20">
     <ul class="flex items-center gap-6 text-sm font-medium">
       <li>
         <button @click="toggleTheme" class="flex items-center gap-2 hover:text-electric transition" aria-label="Toggle theme">

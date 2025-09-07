@@ -21,7 +21,7 @@ const project = content?.projects?.[0] ?? {}
 </script>
 <template>
   <BaseSection :title="hero.title" center>
-    <div v-if="project && project.title" class="space-y-6">
+    <div v-if="project && project.title" class="space-y-6" style="content-visibility:auto; contain-intrinsic-size: 700px;">
       <h3 class="text-2xl font-bold text-electric">{{ project.title }}</h3>
       <p class="text-white/90">{{ project.description }}</p>
       <div class="flex flex-wrap gap-4 mt-4">

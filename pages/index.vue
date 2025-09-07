@@ -44,20 +44,7 @@ const hero = computed(() => content.value?.hero ?? {
 </script>
 <template>
   <main>
-    <section class="relative min-h-screen flex items-center justify-center px-2 sm:px-4 md:px-16 py-8 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-600 text-white overflow-hidden">
-      <!-- Animated SVG Pattern Background -->
-      <svg class="absolute inset-0 w-full h-full opacity-20 pointer-events-none animate-bg-move" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" fill="none" viewBox="0 0 1440 800">
-        <defs>
-          <linearGradient id="bg-grad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#1e90ff" />
-            <stop offset="100%" stop-color="#0a192f" />
-          </linearGradient>
-        </defs>
-        <circle cx="400" cy="200" r="180" fill="url(#bg-grad)" fill-opacity="0.3" />
-        <circle cx="1200" cy="600" r="220" fill="url(#bg-grad)" fill-opacity="0.2" />
-        <ellipse cx="900" cy="100" rx="120" ry="60" fill="#fff" fill-opacity="0.05" />
-        <ellipse cx="200" cy="700" rx="100" ry="40" fill="#fff" fill-opacity="0.04" />
-      </svg>
+    <section class="relative min-h-screen flex items-center justify-center px-2 sm:px-4 md:px-16 py-12 text-white overflow-hidden">
       <div class="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-10 max-w-5xl w-full z-10">
         <!-- Text Block -->
         <header class="w-full md:w-1/2 text-center md:text-left space-y-4 animate-fade-in-up px-2 sm:px-0">
@@ -65,7 +52,9 @@ const hero = computed(() => content.value?.hero ?? {
             <span class="animate-wave inline-block" aria-hidden="true">👋</span>
             <span>Who is . . . . . </span>
           </p>
-          <h1 class="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-blue-400 font-montserrat drop-shadow-lg leading-tight">Kevin Kipruto</h1>
+          <div class="rounded-2xl bg-white/10 dark:bg-white/5 backdrop-blur-md ring-1 ring-white/20 p-4 sm:p-6 inline-block">
+            <h1 class="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-blue-300 font-montserrat drop-shadow-lg leading-tight">Kevin Kipruto</h1>
+          </div>
           <h2 class="text-base xs:text-lg sm:text-xl md:text-2xl font-semibold font-montserrat leading-snug flex items-center justify-center md:justify-start">
             Forged in chemistry, <span class="text-electric font-extrabold ml-1">wired for code.</span>
             <span class="blinking-cursor ml-1" aria-hidden="true">|</span>
@@ -94,7 +83,9 @@ const hero = computed(() => content.value?.hero ?? {
             src="/images/profile.jpg"
             alt="Portrait of Kevin Kipruto, smiling and ready to help you build something great"
             class="w-28 h-28 xs:w-36 xs:h-36 sm:w-40 sm:h-40 md:w-48 md:h-48 object-cover rounded-full border-4 border-blue-400 shadow-xl hover:scale-105 transition-transform"
-            loading="eager"
+            loading="lazy"
+            decoding="async"
+            fetchpriority="high"
           />
         </div>
       </div>

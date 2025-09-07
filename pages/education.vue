@@ -27,7 +27,7 @@ const onImgError = (e: Event) => {
 </script>
 <template>
   <BaseSection :title="hero.title" center>
-    <div class="space-y-6">
+    <div class="space-y-6" style="content-visibility:auto; contain-intrinsic-size: 800px;">
       <p class="text-xl text-electric font-semibold mb-2">{{ hero.description }}</p>
       <div>
         <ul class="space-y-4">

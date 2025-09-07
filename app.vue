@@ -1,5 +1,5 @@
 <template>
-  <div :class="['min-h-screen font-inter', isDark ? 'dark bg-blueprint text-white' : 'bg-white text-slate-900']">
+  <div :class="['min-h-screen font-inter', isDark ? 'dark bg-black text-white' : 'bg-white text-slate-900']">
     <NuxtLayout>
       <NuxtPage :transition="{ name: 'fade' }" />
     </NuxtLayout>
@@ -10,11 +10,14 @@
 import { onMounted, ref } from 'vue'
 
 const isDark = ref(false)
+const animationsReady = ref(false)
 
 onMounted(() => {
   const saved = localStorage.getItem('theme')
-  isDark.value = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
+  isDark.value = saved ? saved === 'dark' : true
   document.documentElement.classList.toggle('dark', isDark.value)
+  // Defer animations until after first frame to reduce jank
+  requestAnimationFrame(() => { animationsReady.value = true })
 })
 
 // Expose a simple event for toggling from nav
