@@ -45,7 +45,6 @@
       </g>
     </svg>
   </div>
-  </div>
 </template>
 
 <script setup>
