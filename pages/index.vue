@@ -48,23 +48,23 @@ const hero = computed(() => content.value?.hero ?? {
       <div class="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-10 max-w-5xl w-full z-10">
         <!-- Text Block -->
         <header class="w-full md:w-1/2 text-center md:text-left space-y-4 animate-fade-in-up px-2 sm:px-0">
-          <p class="text-lg xs:text-xl font-semibold flex items-center justify-center md:justify-start gap-2">
+          <p class="text-lg xs:text-xl font-semibold flex items-center justify-center md:justify-start gap-2 text-white/80">
             <span class="animate-wave inline-block" aria-hidden="true">👋</span>
             <span>Who is . . . . . </span>
           </p>
-          <div class="rounded-2xl bg-white/10 dark:bg-white/5 backdrop-blur-md ring-1 ring-white/20 p-4 sm:p-6 inline-block">
-            <h1 class="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-bold text-blue-300 font-montserrat drop-shadow-lg leading-tight">Kevin Kipruto</h1>
+          <div class="rounded-2xl bg-white/5 dark:bg-white/5 backdrop-blur-md ring-1 ring-white/20 p-4 sm:p-6 inline-block">
+            <h1 class="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-montserrat drop-shadow-lg leading-tight">Kevin Kipruto</h1>
           </div>
-          <h2 class="text-base xs:text-lg sm:text-xl md:text-2xl font-semibold font-montserrat leading-snug flex items-center justify-center md:justify-start">
+          <h2 class="text-base xs:text-lg sm:text-xl md:text-2xl font-semibold font-montserrat leading-snug flex items-center justify-center md:justify-start text-white/90">
             Forged in chemistry, <span class="text-electric font-extrabold ml-1">wired for code.</span>
             <span class="blinking-cursor ml-1" aria-hidden="true">|</span>
           </h2>
-          <p class="text-xs xs:text-sm sm:text-base md:text-lg max-w-md mx-auto md:mx-0 text-gray-100">
+          <p class="text-xs xs:text-sm sm:text-base md:text-lg max-w-md mx-auto md:mx-0 text-white/70">
             Full-stack dev turning ideas into <span class="text-electric font-semibold">interactive magic</span>. Welcome to my digital playground.
           </p>
           <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start mt-6">
             <!-- Primary CTA: See My Work -->
-            <NuxtLink to="/projects" prefetch class="relative inline-flex items-center px-8 py-4 sm:px-10 sm:py-4 font-bold rounded-xl shadow-lg bg-gradient-to-r from-blue-500 via-blue-400 to-blue-600 text-white transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400 animate-cta-border text-base sm:text-lg min-h-[48px] min-w-[160px]">
+            <NuxtLink to="/projects" prefetch class="relative inline-flex items-center px-8 py-4 sm:px-10 sm:py-4 font-bold rounded-xl shadow-lg bg-electric/20 text-white border border-electric/60 transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-electric/60 animate-cta-border text-base sm:text-lg min-h-[48px] min-w-[160px]">
               <span>See My Work</span>
               <svg class="ml-3 w-6 h-6 animate-bounce-x" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -72,7 +72,7 @@ const hero = computed(() => content.value?.hero ?? {
               <span class="absolute inset-0 rounded-xl border-2 border-transparent hover:border-blue-300 transition-all duration-300 pointer-events-none"></span>
             </NuxtLink>
             <!-- Secondary CTA: Contact Me -->
-            <NuxtLink to="/contact" prefetch class="inline-flex items-center px-8 py-4 sm:px-10 sm:py-4 font-bold rounded-xl shadow bg-white/10 hover:bg-white/20 text-white border border-blue-300 transition-all duration-200 text-base sm:text-lg min-h-[48px] min-w-[160px] mt-2 sm:mt-0">
+            <NuxtLink to="/contact" prefetch class="inline-flex items-center px-8 py-4 sm:px-10 sm:py-4 font-bold rounded-xl shadow bg-white/10 hover:bg-white/20 text-white border border-white/30 transition-all duration-200 text-base sm:text-lg min-h-[48px] min-w-[160px] mt-2 sm:mt-0">
               Contact Me
             </NuxtLink>
           </div>

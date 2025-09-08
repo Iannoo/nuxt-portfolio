@@ -1,6 +1,6 @@
 <template>
   <div class="relative min-h-screen flex flex-col overflow-hidden">
-    <BaseNav />
+    <Navbar />
     <Background />
     <main class="flex-1 z-10 relative">
       <slot />
@@ -9,7 +9,7 @@
   </div>
 </template>
 <script setup>
-import BaseNav from '@/components/BaseNav.vue'
+import Navbar from '@/components/Navbar.vue'
 import Background from '@/components/Background.vue'
 import BaseFooter from '@/components/BaseFooter.vue'
 </script> 

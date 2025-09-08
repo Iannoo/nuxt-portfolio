@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        electric: '#1e90ff',
+        electric: '#00ff7f',
         blueprint: '#0a192f',
       },
       fontFamily: {

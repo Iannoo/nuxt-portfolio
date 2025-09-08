@@ -6,6 +6,9 @@
     <!-- Glassmorphism layer -->
     <div class="glass-mask"></div>
 
+    <!-- Subtle grid lines -->
+    <div class="grid-overlay"></div>
+
     <!-- Animated neon orbs -->
     <div class="orb orb-a"></div>
     <div class="orb orb-b"></div>
@@ -65,6 +68,44 @@
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/feGaussianBlur%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
   background-size: 120px 120px;
+}
+
+/* Subtle grid overlay using CSS gradients */
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      rgba(0,0,0,0) 0,
+      rgba(0,0,0,0) 23px,
+      rgba(16,24,40,0.12) 24px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0,
+      rgba(0,0,0,0) 23px,
+      rgba(16,24,40,0.12) 24px
+    );
+}
+
+/* Dark variant for grid */
+html.dark .grid-overlay {
+  opacity: 0.16;
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      rgba(0,0,0,0) 0,
+      rgba(0,0,0,0) 23px,
+      rgba(0,255,127,0.12) 24px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0,0,0,0) 0,
+      rgba(0,0,0,0) 23px,
+      rgba(0,255,127,0.12) 24px
+    );
 }
 
 /* Glass layer for soft blur + vignette */
@@ -181,8 +222,8 @@ html.dark .orb-c { background: radial-gradient(circle at 50% 50%, rgba(0,255,127
 .net-nodes circle:nth-child(even) { animation: twinkle 5s ease-in-out infinite 1.2s; }
 
 html.dark .net-overlay { opacity: 0.35; }
-html.dark .net-lines line { stroke: #00ff7f; }
-html.dark .net-nodes circle { fill: #00ff7f; }
+html.dark .net-lines line { stroke: rgba(255,255,255,0.35); }
+html.dark .net-nodes circle { fill: rgba(255,255,255,0.45); }
 
 /* Responsiveness tweaks */
 @media (max-width: 768px) {
