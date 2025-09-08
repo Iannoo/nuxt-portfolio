@@ -1,6 +1,15 @@
 <script setup lang="ts">
 let content = {}
 let error = null
+useHead({
+  title: 'Education | Kevin Kipruto',
+  meta: [
+    { name: 'description', content: 'A journey through learning – from labs to lines of code.' },
+    { property: 'og:title', content: 'Education | Kevin Kipruto' },
+    { property: 'og:description', content: 'A journey through learning – from labs to lines of code.' },
+    { property: 'og:type', content: 'website' }
+  ]
+})
 try {
   const { data, error: fetchError } = await useFetch('/json/educationContent.json')
   if (fetchError.value) {
@@ -29,11 +38,12 @@ const onImgError = (e: Event) => {
   <BaseSection :title="hero.title" center>
     <div class="space-y-6" style="content-visibility:auto; contain-intrinsic-size: 800px;">
       <p class="text-xl text-electric font-semibold mb-2">{{ hero.description }}</p>
+      <p class="text-white/70 -mt-2">Where curiosity earns its colors.</p>
       <div>
         <ul class="space-y-4">
           <li v-for="item in content?.timeline" :key="item.school" class="bg-blueprint/80 rounded p-4 shadow">
             <div class="flex items-start gap-4">
-              <img v-if="item.photo" :src="item.photo" :alt="item.school + ' photo'" class="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded" loading="lazy" @error="onImgError"/>
+              <NuxtImg v-if="item.photo" :src="item.photo" :alt="item.school + ' photo'" class="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded" format="webp" width="80" height="80" sizes="(min-width: 640px) 80px, 64px" loading="lazy" decoding="async" @error="onImgError"/>
               <div>
                 <h3 class="text-lg font-bold text-electric mb-1">{{ item.school }}</h3>
                 <p class="text-white/90">{{ item.course }}</p>

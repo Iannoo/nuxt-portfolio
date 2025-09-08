@@ -1,7 +1,9 @@
 <template>
   <div class="relative min-h-screen flex flex-col overflow-hidden">
     <Navbar />
-    <Background />
+    <ClientOnly>
+      <LazyBackground />
+    </ClientOnly>
     <main class="flex-1 z-10 relative">
       <slot />
     </main>
@@ -10,6 +12,6 @@
 </template>
 <script setup>
 import Navbar from '@/components/Navbar.vue'
-import Background from '@/components/Background.vue'
+import LazyBackground from '@/components/LazyBackground.vue'
 import BaseFooter from '@/components/BaseFooter.vue'
 </script> 

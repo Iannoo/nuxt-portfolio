@@ -14,7 +14,7 @@ const animationsReady = ref(false)
 
 onMounted(() => {
   const saved = localStorage.getItem('theme')
-  isDark.value = saved ? saved === 'dark' : true
+  isDark.value = saved ? saved === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches
   document.documentElement.classList.toggle('dark', isDark.value)
   // Defer animations until after first frame to reduce jank
   requestAnimationFrame(() => { animationsReady.value = true })

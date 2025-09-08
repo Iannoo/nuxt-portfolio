@@ -10,12 +10,12 @@
     <div class="grid-overlay"></div>
 
     <!-- Animated neon orbs -->
-    <div class="orb orb-a"></div>
-    <div class="orb orb-b"></div>
-    <div class="orb orb-c"></div>
+    <div v-if="canAnimate" class="orb orb-a"></div>
+    <div v-if="canAnimate" class="orb orb-b"></div>
+    <div v-if="canAnimate" class="orb orb-c"></div>
 
     <!-- Constellation/grid overlay -->
-    <svg class="net-overlay" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+    <svg v-if="canAnimate" class="net-overlay" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
       <g class="net-lines">
         <line x1="5" y1="15" x2="25" y2="8"/>
         <line x1="25" y1="8" x2="40" y2="20"/>
@@ -45,7 +45,28 @@
       </g>
     </svg>
   </div>
+  </div>
 </template>
+
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+
+const canAnimate = ref(false)
+
+onMounted(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)')
+  if (reduce.matches) {
+    canAnimate.value = false
+    return
+  }
+  const el = document.querySelector('.bg-layer')
+  if (!el) { canAnimate.value = false; return }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { canAnimate.value = e.isIntersecting })
+  })
+  io.observe(el)
+})
+</script>
 
 <style>
 /* Pastel base with neon accents (light) */

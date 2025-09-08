@@ -1,5 +1,14 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
+useHead({
+  title: 'About | Kevin Kipruto',
+  meta: [
+    { name: 'description', content: 'About Kevin Kipruto – Chemical & Processing Engineering + Software, with a passion for quantum.' },
+    { property: 'og:title', content: 'About | Kevin Kipruto' },
+    { property: 'og:description', content: 'About Kevin Kipruto – Chemical & Processing Engineering + Software, with a passion for quantum.' },
+    { property: 'og:type', content: 'website' }
+  ]
+})
 
 const content = ref<any>({})
 const error = ref<any>(null)

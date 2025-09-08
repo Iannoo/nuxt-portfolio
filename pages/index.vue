@@ -1,5 +1,15 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import LazyHeroBackground from '@/components/LazyHeroBackground.vue'
+useHead({
+  title: 'Home | Kevin Kipruto',
+  meta: [
+    { name: 'description', content: 'Full‑stack developer building interactive experiences. Explore projects and get in touch.' },
+    { property: 'og:title', content: 'Home | Kevin Kipruto' },
+    { property: 'og:description', content: 'Full‑stack developer building interactive experiences. Explore projects and get in touch.' },
+    { property: 'og:type', content: 'website' }
+  ]
+})
 
 const content = ref({})
 const error = ref(null)
@@ -41,10 +51,14 @@ const hero = computed(() => content.value?.hero ?? {
   shortBio: 'Full-stack dev turning ideas into interactive magic. Welcome to my digital playground.',
   cta: 'See My Work'
 })
+
+// LCP image loading state for blur-up placeholder
+const heroImgLoaded = ref(false)
 </script>
 <template>
   <main>
     <section class="relative min-h-screen flex items-center justify-center px-2 sm:px-4 md:px-16 py-12 text-white overflow-hidden">
+      <LazyHeroBackground />
       <div class="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-10 max-w-5xl w-full z-10">
         <!-- Text Block -->
         <header class="w-full md:w-1/2 text-center md:text-left space-y-4 animate-fade-in-up px-2 sm:px-0">
@@ -53,16 +67,16 @@ const hero = computed(() => content.value?.hero ?? {
             <span>Who is . . . . . </span>
           </p>
           <div class="rounded-2xl bg-white/5 dark:bg-white/5 backdrop-blur-md ring-1 ring-white/20 p-4 sm:p-6 inline-block">
-            <h1 class="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-montserrat drop-shadow-lg leading-tight">Kevin Kipruto</h1>
+            <h1 class="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white font-montserrat drop-shadow-lg leading-tight animate-fade-in">Kevin Kipruto</h1>
           </div>
-          <h2 class="text-base xs:text-lg sm:text-xl md:text-2xl font-semibold font-montserrat leading-snug flex items-center justify-center md:justify-start text-white/90">
+          <h2 class="text-base xs:text-lg sm:text-xl md:text-2xl font-semibold font-montserrat leading-snug flex items-center justify-center md:justify-start text-slate-700 dark:text-white/90 animate-fade-in-up">
             Forged in chemistry, <span class="text-electric font-extrabold ml-1">wired for code.</span>
             <span class="blinking-cursor ml-1" aria-hidden="true">|</span>
           </h2>
-          <p class="text-xs xs:text-sm sm:text-base md:text-lg max-w-md mx-auto md:mx-0 text-white/70">
+          <p class="text-xs xs:text-sm sm:text-base md:text-lg max-w-md mx-auto md:mx-0 text-slate-700 dark:text-white/70">
             Full-stack dev turning ideas into <span class="text-electric font-semibold">interactive magic</span>. Welcome to my digital playground.
           </p>
-          <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start mt-6">
+          <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start mt-6 animate-fade-in-up">
             <!-- Primary CTA: See My Work -->
             <NuxtLink to="/projects" prefetch class="relative inline-flex items-center px-8 py-4 sm:px-10 sm:py-4 font-bold rounded-xl shadow-lg bg-electric/20 text-white border border-electric/60 transition-transform duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-electric/60 animate-cta-border text-base sm:text-lg min-h-[48px] min-w-[160px]">
               <span>See My Work</span>
@@ -82,10 +96,14 @@ const hero = computed(() => content.value?.hero ?? {
           <img
             src="/images/profile.jpg"
             alt="Portrait of Kevin Kipruto, smiling and ready to help you build something great"
-            class="w-28 h-28 xs:w-36 xs:h-36 sm:w-40 sm:h-40 md:w-48 md:h-48 object-cover rounded-full border-4 border-blue-400 shadow-xl hover:scale-105 transition-transform"
-            loading="lazy"
+            class="w-28 h-28 xs:w-36 xs:h-36 sm:w-40 sm:h-40 md:w-48 md:h-48 object-cover rounded-full border-4 border-blue-400 shadow-xl hover:scale-105 transition-transform will-change-transform"
+            width="192"
+            height="192"
+            loading="eager"
             decoding="async"
             fetchpriority="high"
+            @load="heroImgLoaded = true"
+            :style="heroImgLoaded ? '' : 'filter: blur(8px); transform: scale(1.02);'"
           />
         </div>
       </div>

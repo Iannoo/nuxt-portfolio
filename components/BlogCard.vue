@@ -30,16 +30,21 @@ const getCategoryColor = (category: string) => {
 </script>
 
 <template>
-  <article class="bg-blueprint/50 border border-electric/20 rounded-lg overflow-hidden hover:border-electric/40 transition-all duration-300 hover:transform hover:scale-105 group">
+  <article class="isolate bg-blueprint/50 border border-electric/20 rounded-lg overflow-hidden hover:border-electric/40 transition-transform duration-300 transform-gpu will-change-transform hover:-translate-y-1 hover:scale-[1.02] hover:z-10 group">
     <!-- Post Image -->
     <div class="relative h-48 bg-gradient-to-br from-blue-600 to-blue-800 overflow-hidden">
-      <img 
+      <NuxtImg 
         v-if="post.cover" 
         :src="post.cover" 
         :alt="post.title"
         class="w-full h-full object-cover"
+        format="webp"
+        sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+        densities="x1 x2"
+        loading="lazy"
+        decoding="async"
       />
-      <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
       
       <!-- Category Chip -->
       <div class="absolute top-4 left-4">
@@ -52,10 +57,10 @@ const getCategoryColor = (category: string) => {
       </div>
       
       <!-- Date and Read Time -->
-      <div class="absolute bottom-4 left-4 right-4">
-        <div class="flex items-center gap-4 text-white/80 text-sm">
+      <div class="absolute bottom-4 left-4 right-4 z-10">
+        <div class="flex flex-wrap items-center gap-3 text-white/90 text-sm drop-shadow">
           <span>{{ formatDate(post.date) }}</span>
-          <span>•</span>
+          <span class="opacity-80">•</span>
           <span>{{ post.minutes }} min read</span>
         </div>
       </div>
@@ -63,7 +68,7 @@ const getCategoryColor = (category: string) => {
 
     <!-- Post Content -->
     <div class="p-6">
-      <h2 class="text-xl font-bold text-white mb-3 group-hover:text-electric transition-colors">
+      <h2 class="relative z-10 text-xl font-bold text-white mb-3 group-hover:text-electric transition-colors">
         {{ post.title }}
       </h2>
       

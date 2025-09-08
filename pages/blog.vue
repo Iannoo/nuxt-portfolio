@@ -72,11 +72,18 @@ const formatDate = (dateString: string) => {
 
       <!-- Blog Posts Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <BlogCard 
-          v-for="post in filteredPosts" 
-          :key="post.slug"
-          :post="post"
-        />
+        <ClientOnly>
+          <Suspense>
+            <LazyBlogCard 
+              v-for="post in filteredPosts" 
+              :key="post.slug"
+              :post="post"
+            />
+            <template #fallback>
+              <SkeletonLoader v-for="i in 3" :key="i" blockClass="h-64" />
+            </template>
+          </Suspense>
+        </ClientOnly>
       </div>
 
       <!-- Empty State -->

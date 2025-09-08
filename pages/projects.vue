@@ -1,6 +1,15 @@
 <script setup lang="ts">
 let content = {}
 let error = null
+useHead({
+  title: 'Projects | Kevin Kipruto',
+  meta: [
+    { name: 'description', content: 'Selected projects by Kevin Kipruto – built with Nuxt, Vue, and modern web tech.' },
+    { property: 'og:title', content: 'Projects | Kevin Kipruto' },
+    { property: 'og:description', content: 'Selected projects by Kevin Kipruto – built with Nuxt, Vue, and modern web tech.' },
+    { property: 'og:type', content: 'website' }
+  ]
+})
 try {
   const { data, error: fetchError } = await useFetch('/json/projectsContent.json')
   if (fetchError.value) {

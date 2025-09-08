@@ -1,6 +1,15 @@
 <script setup lang="ts">
 let content = {}
 let error = null
+useHead({
+  title: 'Contact | Kevin Kipruto',
+  meta: [
+    { name: 'description', content: 'Contact Kevin Kipruto – let’s build something meaningful together.' },
+    { property: 'og:title', content: 'Contact | Kevin Kipruto' },
+    { property: 'og:description', content: 'Contact Kevin Kipruto – let’s build something meaningful together.' },
+    { property: 'og:type', content: 'website' }
+  ]
+})
 try {
   const { data, error: fetchError } = await useFetch('/json/contactContent.json')
   if (fetchError.value) {
@@ -25,6 +34,7 @@ function handleSubmit(form) {
   <BaseSection :title="hero.title" center>
     <div class="space-y-6">
       <p class="text-xl text-electric font-semibold mb-2">{{ hero.description }}</p>
+      <p class="text-white/70 -mt-2">Where ideas find form, and forms find answers.</p>
       <div class="flex flex-col items-center gap-2 mb-4">
         <div class="text-white/90 mb-2">Email: <a :href="`mailto:${content.email}`" class="text-electric underline">{{ content.email }}</a></div>
         <div class="text-white/90 mb-2">Location: {{ content.location }}</div>

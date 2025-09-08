@@ -3,15 +3,14 @@
     <nav class="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8 py-3">
       <div class="flex items-center justify-between rounded-2xl bg-white/10 dark:bg-black/20 backdrop-blur-lg border border-white/20 shadow-[0_8px_30px_rgb(0_0_0_/_0.12)]">
         <!-- Brand -->
-        <NuxtLink to="/" class="pl-4 pr-3 py-2 flex items-center gap-2 group">
-          <span class="inline-block w-2 h-2 rounded-full bg-electric shadow-[0_0_12px_2px_rgba(30,144,255,0.8)]"></span>
-          <span class="font-bold tracking-wide text-sm sm:text-base group-hover:scale-[1.02] transition-transform">Kevin Kipruto</span>
+        <NuxtLink to="/" class="pl-4 pr-3 py-2 flex items-center gap-2 group" prefetch>
+          <img src="/images/logo.svg" alt="Logo" class="w-6 h-6" width="24" height="24"/>
         </NuxtLink>
 
         <!-- Desktop links -->
         <ul class="hidden md:flex items-center gap-2 pr-2">
           <li v-for="item in items" :key="item.to">
-            <NuxtLink :to="item.to" class="px-3 py-2 rounded-lg transition-all hover:scale-[1.03] focus:scale-[1.03] hover:text-electric focus:text-electric hover:shadow-[0_0_12px_2px_rgba(30,144,255,0.35)] focus:shadow-[0_0_12px_2px_rgba(30,144,255,0.35)]" exact-active-class="text-electric">
+            <NuxtLink :to="item.to" prefetch class="px-3 py-2 rounded-lg transition-all hover:scale-[1.03] focus:scale-[1.03] hover:text-electric focus:text-electric hover:shadow-[0_0_12px_2px_rgba(30,144,255,0.35)] focus:shadow-[0_0_12px_2px_rgba(30,144,255,0.35)]" exact-active-class="text-electric">
               {{ item.label }}
             </NuxtLink>
           </li>
