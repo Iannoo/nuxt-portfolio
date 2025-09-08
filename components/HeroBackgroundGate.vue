@@ -1,9 +1,7 @@
 <template>
-  <div ref="root" class="absolute inset-0 -z-10">
+  <div ref="root" class="absolute inset-0 -z-10 overflow-hidden">
     <component v-if="shouldRender" :is="comp" />
-    <div v-else class="absolute inset-0">
-      <div class="bg-canvas-placeholder"></div>
-    </div>
+    <div v-else class="absolute inset-0 hero-fallback"></div>
   </div>
 </template>
 
@@ -13,7 +11,7 @@ import { ref, onMounted, defineAsyncComponent } from 'vue'
 const isMobile = () => matchMedia('(hover: none), (pointer: coarse)').matches
 const shouldRender = ref(false)
 const root = ref(null)
-const comp = defineAsyncComponent(() => import('@/components/Background.vue'))
+const comp = defineAsyncComponent(() => import('@/components/HeroBackground.vue'))
 
 onMounted(() => {
   if (isMobile()) { shouldRender.value = false; return }
@@ -27,9 +25,8 @@ onMounted(() => {
 </script>
 
 <style>
-.bg-canvas-placeholder { position:absolute; inset:0; background: linear-gradient(180deg,#0a0f1f 0%,#000 100%); }
-html:not(.dark) .bg-canvas-placeholder { background: linear-gradient(180deg,#f8fafc 0%,#eef2ff 100%); }
+.hero-fallback { position:absolute; inset:0; background: radial-gradient(40rem 24rem at 20% 0%, rgba(0,255,127,0.12), transparent 60%), linear-gradient(180deg,#000,#0a0f1f); }
+html:not(.dark) .hero-fallback { background: radial-gradient(40rem 24rem at 20% 0%, rgba(147,197,253,0.25), transparent 60%), linear-gradient(180deg,#f8fafc,#eef2ff); }
 </style>
-
 
 

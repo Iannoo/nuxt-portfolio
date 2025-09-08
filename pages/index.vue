@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import LazyHeroBackground from '@/components/LazyHeroBackground.vue'
+import HeroBackgroundGate from '@/components/HeroBackgroundGate.vue'
 useHead({
   title: 'Home | Kevin Kipruto',
   meta: [
@@ -58,7 +58,7 @@ const heroImgLoaded = ref(false)
 <template>
   <main>
     <section class="relative min-h-screen flex items-center justify-center px-2 sm:px-4 md:px-16 py-12 text-white overflow-hidden">
-      <LazyHeroBackground />
+      <HeroBackgroundGate />
       <div class="flex flex-col-reverse md:flex-row items-center gap-8 md:gap-10 max-w-5xl w-full z-10">
         <!-- Text Block -->
         <header class="w-full md:w-1/2 text-center md:text-left space-y-4 animate-fade-in-up px-2 sm:px-0">
