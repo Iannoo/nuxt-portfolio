@@ -1,18 +1,44 @@
 <script setup lang="ts">
-import { getPostBySlug, getNextPost, getPrevPost } from '~/data/posts'
+import { ref, computed, watch } from 'vue'
 
 const route = useRoute()
-const post = getPostBySlug(route.params.slug as string)
-const nextPost = getNextPost(route.params.slug as string)
-const prevPost = getPrevPost(route.params.slug as string)
+const content = ref<any>({})
+const error = ref<any>(null)
+const loading = ref(true)
 
-// 404 if post not found
-if (!post) {
-  throw createError({
-    statusCode: 404,
-    statusMessage: 'Post not found'
-  })
-}
+const { data, error: fetchError } = await useFetch('/json/siteContent.json', { server: false })
+
+watch(data, (newData) => {
+  if (newData) {
+    content.value = newData
+    loading.value = false
+  }
+}, { immediate: true })
+
+watch(fetchError, (newError) => {
+  if (newError) {
+    error.value = newError
+    loading.value = false
+  }
+})
+
+const hero = computed(() => content.value?.blog ?? {
+  title: 'Blog',
+  description: 'Thoughts, tutorials, and insights from my journey in tech.',
+  cta: 'Read More'
+})
+
+// Fetch blog posts from JSON file
+const { data: blogData, error: blogError } = await useFetch('/json/blogContent.json', { server: false })
+
+const blogPosts = computed(() => {
+  return blogData.value?.posts || []
+})
+
+// Find the current blog post based on the slug
+const currentPost = computed(() => {
+  return blogPosts.value.find(post => post.slug === route.params.slug)
+})
 
 const formatDate = (dateString: string) => {
   return new Date(dateString).toLocaleDateString('en-US', {
@@ -22,45 +48,20 @@ const formatDate = (dateString: string) => {
   })
 }
 
-const getCategoryColor = (category: string) => {
-  switch (category) {
-    case 'Development':
-      return 'bg-blue-500/20 text-blue-300 border-blue-500/30'
-    case 'Best Practices':
-      return 'bg-green-500/20 text-green-300 border-green-500/30'
-    case 'Career':
-      return 'bg-purple-500/20 text-purple-300 border-purple-500/30'
-    default:
-      return 'bg-electric/20 text-electric border-electric/30'
-  }
-}
-
-// SEO
+// Set page title and meta
 useHead({
-  title: `${post.title} - Blog`,
+  title: currentPost.value ? `${currentPost.value.title} - Blog` : 'Blog Post',
   meta: [
     {
       name: 'description',
-      content: post.summary
-    },
-    {
-      property: 'og:title',
-      content: post.title
-    },
-    {
-      property: 'og:description',
-      content: post.summary
-    },
-    ...(post.cover ? [{
-      property: 'og:image',
-      content: post.cover
-    }] : [])
+      content: currentPost.value?.excerpt || 'Blog post'
+    }
   ]
 })
 </script>
 
 <template>
-  <div class="max-w-4xl mx-auto px-4 py-8">
+  <div v-if="currentPost" class="max-w-4xl mx-auto px-4 py-8">
     <!-- Back to Blog Link -->
     <NuxtLink 
       to="/blog" 
@@ -75,72 +76,81 @@ useHead({
     <!-- Article Header -->
     <header class="mb-8">
       <div class="flex items-center gap-4 mb-4">
-        <span 
-          class="px-3 py-1 text-sm font-bold rounded-full border"
-          :class="getCategoryColor(post.category)"
-        >
-          {{ post.category }}
+        <span class="px-3 py-1 bg-electric text-blueprint text-sm font-bold rounded-full">
+          {{ currentPost.category }}
         </span>
-        <span class="text-white/60 text-sm">{{ formatDate(post.date) }}</span>
+        <span class="text-white/60 text-sm">{{ formatDate(currentPost.date) }}</span>
         <span class="text-white/60 text-sm">•</span>
-        <span class="text-white/60 text-sm">{{ post.minutes }} min read</span>
+        <span class="text-white/60 text-sm">{{ currentPost.readTime }}</span>
       </div>
       
       <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 leading-tight">
-        {{ post.title }}
+        {{ currentPost.title }}
       </h1>
       
       <p class="text-xl text-white/80 mb-6 leading-relaxed">
-        {{ post.summary }}
+        {{ currentPost.excerpt }}
       </p>
+      
+      <div class="flex items-center gap-4 text-white/60">
+        <span>By {{ currentPost.author }}</span>
+      </div>
     </header>
 
     <!-- Article Content -->
-    <article class="prose prose-invert prose-lg max-w-none mb-12">
+    <article class="prose prose-invert prose-lg max-w-none">
       <div 
         class="text-white/90 leading-relaxed space-y-6"
-        v-html="post.body"
+        v-html="currentPost.content"
       ></div>
     </article>
 
-    <!-- Navigation -->
-    <div class="flex flex-col sm:flex-row gap-4 pt-8 border-t border-electric/20">
-      <NuxtLink 
-        v-if="prevPost"
-        :to="`/blog/${prevPost.slug}`"
-        class="flex-1 p-4 bg-blueprint/30 border border-electric/20 rounded-lg hover:border-electric/40 transition-colors group"
-      >
-        <div class="text-sm text-white/60 mb-1">← Previous</div>
-        <div class="text-white font-semibold group-hover:text-electric transition-colors">
-          {{ prevPost.title }}
-        </div>
-      </NuxtLink>
-      
-      <div v-else class="flex-1"></div>
-      
-      <NuxtLink 
-        v-if="nextPost"
-        :to="`/blog/${nextPost.slug}`"
-        class="flex-1 p-4 bg-blueprint/30 border border-electric/20 rounded-lg hover:border-electric/40 transition-colors group text-right"
-      >
-        <div class="text-sm text-white/60 mb-1">Next →</div>
-        <div class="text-white font-semibold group-hover:text-electric transition-colors">
-          {{ nextPost.title }}
-        </div>
-      </NuxtLink>
-      
-      <div v-else class="flex-1"></div>
+    <!-- Tags -->
+    <div class="mt-12 pt-8 border-t border-electric/20">
+      <h3 class="text-lg font-semibold text-electric mb-4">Tags</h3>
+      <div class="flex flex-wrap gap-2">
+        <span 
+          v-for="tag in currentPost.tags" 
+          :key="tag"
+          class="px-3 py-1 bg-blueprint/50 border border-electric/30 text-white/80 text-sm rounded-full hover:border-electric/60 transition-colors"
+        >
+          {{ tag }}
+        </span>
+      </div>
     </div>
 
-    <!-- Back to Blog -->
-    <div class="text-center mt-8">
-      <NuxtLink 
-        to="/blog" 
-        class="inline-flex items-center px-6 py-3 bg-electric text-blueprint font-bold rounded-lg hover:bg-white transition-colors"
-      >
-        ← Back to All Posts
-      </NuxtLink>
+    <!-- Related Posts -->
+    <div class="mt-12 pt-8 border-t border-electric/20">
+      <h3 class="text-2xl font-bold text-electric mb-6">Related Posts</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <article 
+          v-for="post in blogPosts.filter(p => p.id !== currentPost.id).slice(0, 2)" 
+          :key="post.id"
+          class="bg-blueprint/30 border border-electric/20 rounded-lg p-6 hover:border-electric/40 transition-colors"
+        >
+          <h4 class="text-lg font-bold text-white mb-2 hover:text-electric transition-colors">
+            <NuxtLink :to="`/blog/${post.slug}`">{{ post.title }}</NuxtLink>
+          </h4>
+          <p class="text-white/70 text-sm mb-3">{{ post.excerpt }}</p>
+          <div class="flex items-center gap-4 text-white/50 text-xs">
+            <span>{{ formatDate(post.date) }}</span>
+            <span>•</span>
+            <span>{{ post.readTime }}</span>
+          </div>
+        </article>
+      </div>
     </div>
+  </div>
+
+  <div v-else class="max-w-4xl mx-auto px-4 py-8 text-center">
+    <h1 class="text-3xl font-bold text-white mb-4">Post Not Found</h1>
+    <p class="text-white/70 mb-8">The blog post you're looking for doesn't exist.</p>
+    <NuxtLink 
+      to="/blog" 
+      class="inline-flex items-center px-6 py-3 bg-electric text-blueprint font-bold rounded-lg hover:bg-white transition-colors"
+    >
+      Back to Blog
+    </NuxtLink>
   </div>
 </template>
 

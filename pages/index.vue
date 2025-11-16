@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed, watch } from 'vue'
+import type { FetchError } from 'ofetch'
 import HeroBackgroundGate from '@/components/HeroBackgroundGate.vue'
 useHead({
   title: 'Home | Kevin Kipruto',
@@ -11,12 +12,23 @@ useHead({
   ]
 })
 
-const content = ref({})
-const error = ref(null)
+interface HeroContent {
+  name: string
+  tagline: string
+  shortBio: string
+  cta: string
+}
+
+interface SiteContent {
+  hero?: HeroContent
+}
+
+const content = ref<SiteContent | null>(null)
+const error = ref<FetchError<any> | null>(null)
 const loading = ref(true)
 
 // Use client-side only fetch to avoid SSR issues
-const { data, error: fetchError, pending } = await useFetch('/json/siteContent.json', {
+const { data, error: fetchError } = await useFetch('/json/siteContent.json', {
   server: false,
   default: () => ({
     hero: {
@@ -31,7 +43,7 @@ const { data, error: fetchError, pending } = await useFetch('/json/siteContent.j
 // Watch for data changes and update content
 watch(data, (newData) => {
   if (newData) {
-    content.value = newData
+    content.value = newData as SiteContent
     loading.value = false
   }
 }, { immediate: true })
@@ -45,7 +57,7 @@ watch(fetchError, (newError) => {
   }
 })
 
-const hero = computed(() => content.value?.hero ?? {
+const hero = computed<HeroContent>(() => content.value?.hero ?? {
   name: 'Kevin Kipruto',
   tagline: 'Forged in chemistry, wired for code.',
   shortBio: 'Full-stack dev turning ideas into interactive magic. Welcome to my digital playground.',
@@ -66,14 +78,14 @@ const heroImgLoaded = ref(false)
             <span class="animate-wave inline-block" aria-hidden="true">👋</span>
             <span>Who is . . . . . </span>
           </p>
-          <div class="rounded-2xl bg-white/5 dark:bg-white/5 backdrop-blur-md ring-1 ring-white/20 p-4 sm:p-6 inline-block">
-            <h1 class="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white font-montserrat drop-shadow-lg leading-tight animate-fade-in">Kevin Kipruto</h1>
+          <div class="rounded-2xl bg-white/10 border border-white/20 p-4 sm:p-6 inline-block">
+            <h1 class="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-montserrat drop-shadow-lg leading-tight animate-fade-in">Kevin Kipruto</h1>
           </div>
-          <h2 class="text-base xs:text-lg sm:text-xl md:text-2xl font-semibold font-montserrat leading-snug flex items-center justify-center md:justify-start text-slate-700 dark:text-white/90 animate-fade-in-up">
+          <h2 class="text-base xs:text-lg sm:text-xl md:text-2xl font-semibold font-montserrat leading-snug flex items-center justify-center md:justify-start text-white/90 animate-fade-in-up">
             Forged in chemistry, <span class="text-electric font-extrabold ml-1">wired for code.</span>
             <span class="blinking-cursor ml-1" aria-hidden="true">|</span>
           </h2>
-          <p class="text-xs xs:text-sm sm:text-base md:text-lg max-w-md mx-auto md:mx-0 text-slate-700 dark:text-white/70">
+          <p class="text-xs xs:text-sm sm:text-base md:text-lg max-w-md mx-auto md:mx-0 text-white/80">
             Full-stack dev turning ideas into <span class="text-electric font-semibold">interactive magic</span>. Welcome to my digital playground.
           </p>
           <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start mt-6 animate-fade-in-up">

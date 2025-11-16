@@ -1,18 +1,6 @@
 <template>
-  <nav class="w-full py-3 px-4 flex justify-center bg-transparent backdrop-blur-sm border-b border-white/10 dark:border-[#00ff7f33] z-20">
+  <nav class="w-full py-3 px-4 flex justify-center bg-transparent backdrop-blur-sm border-b border-white/10 z-20">
     <ul class="flex items-center gap-6 text-sm font-medium">
-      <li>
-        <button @click="toggleTheme" class="flex items-center gap-2 hover:text-electric transition" aria-label="Toggle theme">
-          <svg v-if="!isDark" viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8">
-            <circle cx="12" cy="12" r="4"/>
-            <path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l-1.5-1.5M20.5 20.5L19 19M19 5l1.5-1.5M5 19L3.5 20.5"/>
-          </svg>
-          <svg v-else viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-          </svg>
-          <span class="hidden sm:inline">Theme</span>
-        </button>
-      </li>
       <li>
         <NuxtLink to="/" exact class="flex items-center gap-2 hover:text-electric transition" exact-active-class="text-electric" aria-label="Home">
           <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.8">
@@ -85,18 +73,4 @@
   </nav>
 </template> 
 <script setup>
-import { ref, onMounted } from 'vue'
-
-const isDark = ref(false)
-
-onMounted(() => {
-  isDark.value = document.documentElement.classList.contains('dark')
-})
-
-const toggleTheme = () => {
-  if (window && window.__toggleTheme) {
-    window.__toggleTheme()
-    isDark.value = document.documentElement.classList.contains('dark')
-  }
-}
 </script>

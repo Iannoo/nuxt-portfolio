@@ -27,8 +27,7 @@ onMounted(() => {
 </script>
 
 <style>
-.bg-canvas-placeholder { position:absolute; inset:0; background: linear-gradient(180deg,#0a0f1f 0%,#000 100%); }
-html:not(.dark) .bg-canvas-placeholder { background: linear-gradient(180deg,#f8fafc 0%,#eef2ff 100%); }
+.bg-canvas-placeholder { position: absolute; inset: 0; background: #1e1bb5; }
 </style>
 
 
