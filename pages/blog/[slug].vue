@@ -155,35 +155,63 @@ useHead({
 </template>
 
 <style scoped>
+.text-electric {
+  color: #1e90ff;
+}
+
 .prose h2 {
-  @apply text-2xl font-bold text-electric mt-8 mb-4;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  color: #1e90ff;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
 .prose h3 {
-  @apply text-xl font-semibold text-white mt-6 mb-3;
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .prose p {
-  @apply text-white/90 mb-4;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 1rem;
 }
 
-.prose ul, .prose ol {
-  @apply mb-4 pl-6;
+.prose ul,
+.prose ol {
+  margin-bottom: 1rem;
+  padding-left: 1.5rem;
 }
 
 .prose li {
-  @apply text-white/90 mb-2;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 0.5rem;
 }
 
 .prose pre {
-  @apply bg-blueprint/50 border border-electric/30 rounded-lg p-4 overflow-x-auto mb-4;
+  background-color: rgba(10, 25, 47, 0.5);
+  border: 1px solid rgba(0, 255, 127, 0.3);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-bottom: 1rem;
 }
 
 .prose code {
-  @apply bg-blueprint/50 text-electric px-2 py-1 rounded text-sm;
+  background-color: rgba(10, 25, 47, 0.5);
+  color: #1e90ff;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
 }
 
 .prose strong {
-  @apply text-white font-semibold;
+  color: #ffffff;
+  font-weight: 600;
 }
-</style> 
+</style>
