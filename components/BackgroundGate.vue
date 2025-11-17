@@ -27,7 +27,7 @@ onMounted(() => {
 </script>
 
 <style>
-.bg-canvas-placeholder { position: absolute; inset: 0; background: #1e1bb5; }
+.bg-canvas-placeholder { position: absolute; inset: 0; background: #3539a1; }
 </style>
 
 

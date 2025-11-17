@@ -1,6 +1,6 @@
 <script setup lang="ts">
-let content = {}
-let error = null
+let content: Record<string, any> = {}
+let error: Error | null = null
 useHead({
   title: 'Education | Kevin Kipruto',
   meta: [
@@ -11,24 +11,25 @@ useHead({
   ]
 })
 try {
-  const { data, error: fetchError } = await useFetch('/json/educationContent.json')
+  const { data, error: fetchError } = await useFetch('/json/educationContent.json', { server: false })
   if (fetchError.value) {
-    error = fetchError.value
+    error = fetchError.value as Error
     console.error('Failed to load educationContent.json:', error)
   }
-  content = data.value ?? {}
-} catch (err) {
-  error = err
+  content = (data.value as Record<string, any>) ?? {}
+} catch (err: unknown) {
+  error = err instanceof Error ? err : new Error(String(err))
   console.error('Failed to load educationContent.json:', err)
 }
-const hero = content.hero ?? {
+const hero = (content.hero as Record<string, any>) ?? {
   title: 'Education',
   description: 'Where my journey of curiosity was forged.',
   cta: 'View Credentials'
 }
 
-const onImgError = (e: Event) => {
-  const target = e.target as HTMLImageElement
+const onImgError = (payload: string | Event) => {
+  if (typeof payload === 'string') return
+  const target = payload.target as HTMLImageElement | null
   if (!target) return
   // fallback to local profile image to avoid broken thumbnail
   target.src = '/images/profile.jpg'
@@ -41,9 +42,9 @@ const onImgError = (e: Event) => {
       <p class="text-white/70 -mt-2">Where curiosity earns its colors.</p>
       <div>
         <ul class="space-y-4">
-          <li v-for="item in content?.timeline" :key="item.school" class="bg-blueprint/80 rounded p-4 shadow">
+          <li v-for="item in content?.timeline ?? []" :key="item.school" class="bg-blueprint/80 rounded p-4 shadow">
             <div class="flex items-start gap-4">
-              <NuxtImg v-if="item.photo" :src="item.photo" :alt="item.school + ' photo'" class="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded" format="webp" width="80" height="80" sizes="(min-width: 640px) 80px, 64px" loading="lazy" decoding="async" @error="onImgError"/>
+              <NuxtImg v-if="item.photo" :src="item.photo" :alt="item.school + ' photo'" class="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded border border-white/20" format="webp" width="80" height="80" sizes="(min-width: 640px) 80px, 64px" loading="lazy" decoding="async" @error="onImgError"/>
               <div>
                 <h3 class="text-lg font-bold text-electric mb-1">{{ item.school }}</h3>
                 <p class="text-white/90">{{ item.course }}</p>
@@ -54,7 +55,7 @@ const onImgError = (e: Event) => {
         </ul>
       </div>
       <div class="mt-4">
-        <NuxtLink to="/projects" class="inline-block px-6 py-3 rounded bg-electric text-blueprint font-bold text-lg shadow hover:bg-white hover:text-electric transition">{{ hero.cta }}</NuxtLink>
+        <NuxtLink to="/projects" class="inline-block px-6 py-3 rounded border-2 border-electric text-electric font-bold text-lg shadow hover:bg-electric hover:text-blueprint transition">{{ hero.cta }}</NuxtLink>
       </div>
     </div>
   </BaseSection>

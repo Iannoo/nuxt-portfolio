@@ -64,8 +64,7 @@ const hero = computed<HeroContent>(() => content.value?.hero ?? {
   cta: 'See My Work'
 })
 
-// LCP image loading state for blur-up placeholder
-const heroImgLoaded = ref(false)
+// LCP image loading state removed to prevent blur delay
 </script>
 <template>
   <main>
@@ -114,9 +113,7 @@ const heroImgLoaded = ref(false)
             loading="eager"
             decoding="async"
             fetchpriority="high"
-            @load="heroImgLoaded = true"
-            :style="heroImgLoaded ? '' : 'filter: blur(8px); transform: scale(1.02);'"
-          />
+            />
         </div>
       </div>
     </section>
