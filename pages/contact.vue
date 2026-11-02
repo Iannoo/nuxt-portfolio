@@ -34,13 +34,14 @@ function handleSubmit(form) {
   <BaseSection :title="hero.title" center>
     <div class="space-y-6">
       <p class="text-xl text-electric font-semibold mb-2">{{ hero.description }}</p>
-      <p class="text-white/70 -mt-2">Where ideas find form, and forms find answers.</p>
+      <p class="text-blueprint-700 -mt-2">Where ideas find form, and forms find answers.</p>
       <div class="flex flex-col items-center gap-2 mb-4">
-        <div class="text-white/90 mb-2">Email: <a :href="`mailto:${content.email}`" class="text-electric underline">{{ content.email }}</a></div>
-        <div class="text-white/90 mb-2">Location: {{ content.location }}</div>
-        <div class="flex gap-4">
-          <a v-if="content?.socials?.github" :href="content.socials.github" target="_blank" class="text-electric underline">GitHub</a>
-          <a v-if="content?.socials?.linkedin" :href="content.socials.linkedin" target="_blank" class="text-electric underline">LinkedIn</a>
+        <div class="text-blueprint-900 mb-2">Email: <a :href="`mailto:${content.email}`" class="text-electric underline">{{ content.email }}</a></div>
+        <div class="text-blueprint-900 mb-2">Location: {{ content.location }}</div>
+        <div class="flex gap-4 text-electric underline">
+          <a v-if="content?.socials?.github" :href="content.socials.github" target="_blank">GitHub</a>
+          <a v-if="content?.socials?.linkedin" :href="content.socials.linkedin" target="_blank">LinkedIn</a>
+          <a v-if="content?.socials?.whatsapp" :href="content.socials.whatsapp" target="_blank">WhatsApp</a>
         </div>
       </div>
       <BaseContactForm @submit="handleSubmit" />

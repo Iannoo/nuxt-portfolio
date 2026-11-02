@@ -1,6 +1,6 @@
 <template>
   <div class="fixed inset-0 -z-10">
-    <div class="w-full h-full bg-[#3539a1]">
+    <div class="w-full h-full bg-[#ECE5DD]">
       <!-- Solid brand background -->
     </div>
   </div>

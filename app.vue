@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen font-inter bg-[#3539a1] text-white">
+  <div class="min-h-screen font-inter bg-[#ECE5DD] text-blueprint-900">
     <NuxtLayout>
       <NuxtPage :transition="{ name: 'fade' }" />
     </NuxtLayout>

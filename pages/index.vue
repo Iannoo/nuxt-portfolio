@@ -34,7 +34,7 @@ const { data, error: fetchError } = await useFetch('/json/siteContent.json', {
     hero: {
       name: 'Kevin Kipruto',
       tagline: 'Forged in chemistry, wired for code.',
-      shortBio: 'Full-stack dev turning ideas into interactive magic. Welcome to my digital playground.',
+      shortBio: 'Chemical engineerfluent in both reaction pathways and programming logic . I create streamlined processes powered by science and smart automation .',
       cta: 'See My Work'
     }
   })

@@ -1,5 +1,5 @@
 <template>
-  <div class="relative min-h-screen flex flex-col overflow-x-hidden antialiased text-white bg-[#3539a1]">
+  <div class="relative min-h-screen flex flex-col overflow-x-hidden antialiased text-blueprint-900 bg-[#ECE5DD]">
     <Navbar />
     <ClientOnly>
       <BackgroundGate />
